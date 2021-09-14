@@ -11,4 +11,4 @@ const todoSchema = new Schema(
   }
 );
 
-modeule.export = model("Todo", todoSchema);
+module.exports = model("Todo", todoSchema);
