@@ -12,7 +12,7 @@ const app = express();
 //utilizar o json no body das requisições
 app.use(express.json());
 
-app.post("/todos", async (request, response) => {
+app.post("/todos", async (req, res) => {
   if (!req.body.title) {
     return res.status(400).json({ msg: "missing title field" });
   }
@@ -26,6 +26,13 @@ app.post("/todos", async (request, response) => {
   }
 });
 
-app.get('/todos', (req, res) => )
+app.get("/todos", async (req, res) => {
+  try {
+    const todos = await Todo.find();
+    res.status(200).json(todos);
+  } catch (error) {
+    res.status(500).json({ msg: "ServerError", erro });
+  }
+});
 
 app.listen(PORT, () => console.log(`Server listen on Port ${PORT}`));
